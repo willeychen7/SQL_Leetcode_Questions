@@ -40,10 +40,22 @@ Output:
 | John |
 +------+
 
--- ANSWER:
+-- ANSWER
 SELECT e2.name
 FROM Employee e1
 LEFT JOIN Employee e2
 ON e1.managerId = e2.id
 GROUP BY e1.managerId
 HAVING count(*) >=5 AND e2.name IS NOT NULL
+
+
+-- ANSWER2 CTE AND WHERE CLAUSE
+WITH manager AS(SELECT
+  managerId
+FROM Employee
+GROUP BY managerId
+HAVING count(*)>=5)
+
+SELECT name
+FROM Employee
+WHERE id IN (select managerId from manager)
