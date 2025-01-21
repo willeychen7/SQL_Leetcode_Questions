@@ -4,7 +4,7 @@ Table: Products
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
-| product_id  | int     |
+| product_id  | int     | PK
 | low_fats    | enum    |
 | recyclable  | enum    |
 +-------------+---------+
