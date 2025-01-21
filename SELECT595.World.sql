@@ -1,10 +1,10 @@
 -- 595. Big Countries
 
 Table: World
-+-------------+---------+----+
-| Column Name | Type    |    |
-+-------------+---------+----+
-| name        | varchar | PK | 
++-------------+---------+
+| Column Name | Type    |  
++-------------+---------+
+| name        | varchar | PK 
 | continent   | varchar |
 | area        | int     |
 | population  | int     |
