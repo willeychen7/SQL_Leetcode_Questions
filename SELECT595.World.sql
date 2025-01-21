@@ -44,7 +44,7 @@ Output:
 +-------------+------------+---------+
 
 
--- Answer:
+-- ANSWER:
 SELECT name, population, area
 FROM WOrld
 WHERE area>=3000000 OR 
