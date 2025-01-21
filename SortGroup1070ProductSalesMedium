@@ -3,9 +3,9 @@ Table: Sales
 +-------------+-------+
 | Column Name | Type  |
 +-------------+-------+
-| sale_id     | int   |
-| product_id  | int   |
-| year        | int   |
+| sale_id     | int   | PK1
+| product_id  | int   | FK
+| year        | int   | PK2
 | quantity    | int   |
 | price       | int   |
 +-------------+-------+
@@ -19,7 +19,7 @@ Table: Product
 +--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
-| product_id   | int     |
+| product_id   | int     | PK
 | product_name | varchar |
 +--------------+---------+
 product_id is the primary key (column with unique values) of this table.
@@ -30,7 +30,14 @@ Write a solution to select the product id, year, quantity, and price for the fir
 Return the resulting table in any order.
 The result format is in the following example.
 
- 
+
+select product_id, min(year) as first_year, quantity, price
+from Sales
+group by product_id
+
+
+
+
 
 Example 1:
 Input: 
@@ -59,7 +66,17 @@ Output:
 +------------+------------+----------+-------+
 
 
--- ANSWER
+-- ANSWER1 subquery
+select product_id, year as first_year, quantity, price
+from Sales
+where (product_id, year) in (
+    select product_id, min(year)
+    from Sales
+    group by product_id
+)
+
+
+-- ANSWER2 CTE
 WITH CTE AS(
     SELECT product_id, min(year) as first_year
     FROM Sales 
