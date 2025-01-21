@@ -3,7 +3,7 @@ Table: Customer
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
-| id          | int     |
+| id          | int     | PK
 | name        | varchar |
 | referee_id  | int     |
 +-------------+---------+
@@ -14,7 +14,7 @@ Each row of this table indicates the id of a customer, their name, and the id of
 Find the names of the customer that are not referred by the customer with id = 2.
 Return the result table in any order.
 The result format is in the following example.
-
+ 
  
 Example 1:
 Input: 
@@ -39,7 +39,24 @@ Output:
 | Zack |
 +------+
 
--- ANSWER：
+
+HINT: To include all rows, consider NULL Case.
+ 
+-- ANSWER1：
 SELECT name
 FROM Customer
 WHERE referee_id <>2 OR referee_id is NULL
+
+
+
+-- ANSWER2:
+SELECT name 
+FROM customer 
+WHERE id not in 
+ (SELECT id from customer
+ where referee_id =2)
+
+
+
+
+
