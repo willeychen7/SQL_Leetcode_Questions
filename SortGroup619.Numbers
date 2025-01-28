@@ -10,9 +10,10 @@ Each row of this table contains an integer.
  
 
 A single number is a number that appeared only once in the MyNumbers table.
-Find the largest single number. If there is no single number, report null.
+Find the largest single number. If there is no single number, REPORT NULL. 
 The result format is in the following example.
- 
+
+Hint: Report NULL means, you could be selecting FROM an empty dataset.
 
 Example 1:
 Input: 
@@ -61,7 +62,7 @@ Output:
 Explanation: There are no single numbers in the input table so we return null.
 
 
--- ANSWER
+-- ANSWER1 Subquery
 SELECT max(num) as num
 FROM (SELECT num
   FROM MyNumbers
@@ -69,8 +70,10 @@ FROM (SELECT num
   HAVING count(num) = 1) as subquery 
 
 
--- ANSWER2 USE LIMIT1
-SELECT IF(COUNT(num) =1, num, null) AS num FROM MyNumbers GROUP BY num ORDER BY COUNT(num), num DESC LIMIT 1;
-
--- ANSWER3 USE WHERE 
-SELECT MAX(num) AS num  FROM MyNumbers WHERE num IN (SELECT num FROM MyNumbers GROUP BY num HAVING COUNT(*) = 1);
+-- ANSWER2 WHERE Clause
+SELECT MAX(num) AS num  
+FROM MyNumbers 
+WHERE num IN (
+ SELECT num 
+ FROM MyNumbers 
+ GROUP BY num HAVING COUNT(*) = 1);
