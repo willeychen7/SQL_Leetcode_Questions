@@ -3,7 +3,7 @@ Table: Seat
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
-| id          | int     |
+| id          | int     | PK
 | student     | varchar |
 +-------------+---------+
 id is the primary key (unique value) column for this table.
